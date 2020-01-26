@@ -1,2 +1,2 @@
 # ECOAR
-Computer Architecture course projects
+Computer Architecture course project
