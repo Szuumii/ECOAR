@@ -2,6 +2,7 @@
 Computer Architecture course projects 
 
 MIPS task:
+
 Write a program removing all comments from a C source file. 
 The program should properly handle both styles of comments (/*...*/ and //...<end of line>).
 
