@@ -4,8 +4,8 @@ FINAL=program
 
 all: nasm_compile c_compile final_complie
 nasm_compile:
-	nasm -o $(ASM_FILE).o -f elf32 -l $(ASM_FILE).lst $(ASM_FILE).asm
+	nasm -felf64 -o $(ASM_FILE).o $(ASM_FILE).asm
 c_compile:
-	gcc -m32 -c -g -O0 $(C_FILE).c
+	gcc -c -g -O0 $(C_FILE).c
 final_complie:
-	gcc -m32 -o $(FINAL) $(C_FILE).o $(ASM_FILE).o
+	gcc -m64 -o $(FINAL) $(C_FILE).o $(ASM_FILE).o

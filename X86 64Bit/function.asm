@@ -2,11 +2,11 @@ section .text
 global  clrsingleones
 
 clrsingleones:
-    push    ebp
-    mov     ebp, esp
-    push    ebx
-    mov     eax, [ebp+8]
-    xor     edx, edx 
+    push    rbp
+    mov     rbp, rsp
+    push    rbx
+    mov     rax, rdi
+    xor     rdx, rdx 
     add     dl, 30 ;set iteration coutner
     mov     ebx, 0xE0000000   ;set out mask for 3 bits extraction
     mov     ecx, 0x40000000   ;mask for flipping bits
@@ -19,7 +19,6 @@ fliploop:
     dec     dl
     mov     dh, dl
 
-
 shiftloop:
     cmp     dh, 0
     je      endshift
@@ -29,9 +28,9 @@ shiftloop:
 endshift:
     cmp     eax, 2
     jne     skipflip
-    xor     [ebp+8], ecx
+    xor     rdi, rcx
 skipflip:
-    mov     eax, [ebp+8]
+    mov     rax, rdi
     shr     ebx,1
     shr     ecx,1
     jmp     fliploop
@@ -40,27 +39,27 @@ skipflip:
 
 
 firstdigit:
-    mov     eax, [ebp+8]
-    mov     ebx, 0xC0000000
-    mov     ecx, 0x80000000
+    mov     rax, rdi
+    mov     rbx, 0xC0000000
+    mov     rcx, 0x80000000
 
-    and     eax, ebx
+    and     rax, rbx
     shr     eax, 30
     cmp     eax, 2
     jne     lastdigit
-    xor     [ebp+8], ecx
+    xor     rdi, rcx
 lastdigit:
-    mov     eax, [ebp+8]
-    mov     ecx, 0x1
-    mov     ebx, 0x3
-    and     eax, ebx
+    mov     rax, rdi
+    mov     rcx, 0x1
+    mov     rbx, 0x3
+    and     rax, rbx
     cmp     eax, 1
     jne     end
-    xor     [ebp+8], ecx
+    xor     rdi, rcx
 
 end:
-    mov     eax, [ebp+8]
-    pop     ebx
-    mov     esp,ebp
-    pop     ebp
+    mov     rax, rdi
+    pop     rbx
+    mov     rsp,rbp
+    pop     rbp
     ret
