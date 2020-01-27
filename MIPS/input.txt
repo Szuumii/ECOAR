@@ -1,0 +1,48 @@
+"/*Comment should not be deleted*/"
+
+/*Delete this txt  // This also should be deleted*/
+
+"//This is a string /*"
+
+This txt should be printed normally
+
+/* commented string " Hello there" */
+
+//"Here can be anything yet it is still a comment a;,';.'/l'',/k;l*/ /*
+
+
+
+"/* comment located in string */" // End line comment 
+
+/*
+
+M
+u
+L
+T
+I
+
+R
+O
+W
+ // Additional comment
+C
+O
+O
+M
+EN // wHY not
+
+*/
+
+
+/*Etaashas // asdkaksd*/
+
+/*....
+..
+*../ lasldlasd still a comment
+*/
+
+
+
+
+
