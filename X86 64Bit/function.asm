@@ -4,62 +4,45 @@ global  clrsingleones
 clrsingleones:
     push    rbp
     mov     rbp, rsp
-    push    rbx
-    mov     rax, rdi
-    xor     rdx, rdx 
-    add     dl, 30 ;set iteration coutner
-    mov     ebx, 0xE0000000   ;set out mask for 3 bits extraction
-    mov     ecx, 0x40000000   ;mask for flipping bits
+    mov     eax, edi
+    xor     ecx, ecx 
+    mov     cl, 30 ;set iteration coutner
+    mov     r8d, 0xE0000000   ;set out mask for 3 bits extraction
+    mov     edx, 0x40000000   ;mask for flipping bits
 fliploop:
-    cmp     edx, 0
+    cmp     cl, 0
     jz      firstdigit
 
-    and     eax, ebx
+    and     eax, r8d
 
-    dec     dl
-    mov     dh, dl
+    dec     cl
+    shr     eax, cl
 
-shiftloop:
-    cmp     dh, 0
-    je      endshift
-    shr     eax, 1
-    dec     dh
-    jmp     shiftloop
-endshift:
     cmp     eax, 2
     jne     skipflip
-    xor     rdi, rcx
+    xor     edi, edx
 skipflip:
-    mov     rax, rdi
-    shr     ebx,1
-    shr     ecx,1
+    mov     eax, edi
+    shr     r8d,1
+    shr     edx,1
     jmp     fliploop
 
-
-
-
 firstdigit:
-    mov     rax, rdi
-    mov     rbx, 0xC0000000
-    mov     rcx, 0x80000000
-
-    and     rax, rbx
+    mov     eax, edi
+    and     eax, 0xC0000000
     shr     eax, 30
     cmp     eax, 2
     jne     lastdigit
-    xor     rdi, rcx
+    xor     edi, 0x80000000
 lastdigit:
-    mov     rax, rdi
-    mov     rcx, 0x1
-    mov     rbx, 0x3
-    and     rax, rbx
+    mov     eax, edi
+    and     eax, 3
     cmp     eax, 1
     jne     end
-    xor     rdi, rcx
+    xor     edi, 1
 
 end:
-    mov     rax, rdi
-    pop     rbx
+    mov     eax, edi
     mov     rsp,rbp
     pop     rbp
     ret

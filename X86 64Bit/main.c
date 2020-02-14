@@ -6,9 +6,7 @@ void binprint(unsigned int v);
 
 int main(int argc, char** argv)
 {
-    unsigned int value;
-    printf("Give unsigned int in hexadecimal: ");
-    scanf("%x", &value);
+    unsigned int value = (int)strtoul(argv[1], NULL, 16);
     printf("%x in binary is: \t", value);
     binprint(value);
 
